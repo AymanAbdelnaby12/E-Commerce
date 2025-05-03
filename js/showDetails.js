@@ -7,9 +7,10 @@ const productId = params.get("id");
 let response = await fetch('https://fakestoreapi.in/api/products');
 let data = await response.json();
 let products = data.products;
+console.log(productId) 
 
-let product = products.find(p => p.id == productId); 
-    document.getElementById("img_product").src = product.image;
+let product = products.find(p => p.id == productId);
+document.getElementById("img_product").src = product.image;
     document.getElementById("catogry_1").textContent = product.category;
     document.getElementById("catogry_2").textContent = product.category;
     document.getElementById("product_name2").textContent = product.title;

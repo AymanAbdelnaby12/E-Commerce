@@ -2,71 +2,42 @@ console.log("hello")
 
 viewProducts();
 
-//to do to print all products of specific category
-function viewAllCategoryProducts(products){
-
-}
 async function viewProducts(){
     let products = await getProducts();
     console.log(products);
     let groupedProducts = groupProducts(products);
-    console.log(groupProducts(products));
+    console.log(groupedProducts);   
+
     let productsSections = document.querySelector("#products");
+
     for (let [category, products] of groupedProducts){
         let section = document.createElement("section");
         section.classList.add("container-fluid", "p-3");
-        section.id = category;
+        section.id = category; 
+
         section.innerHTML = `
-                <h2>${category}</h2>
-                <div class="row p-4">
-                    <!-- Example Product -->
+            <h2>${category}</h2>
+            <div class="row p-4">
+                ${products.slice(0,4).map(product => `
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 align-items-stretch">
                         <div class="card h-100">
-                            <img src="${products[1].image}" class="card-img-top" alt="Product">
+                            <img src="${product.image}" class="card-img-top" alt="Product">
                             <div class="card-body">
-                                <h5 class="card-title">${products[1].title}</h5>
-                                <p class="card-text">${products[1].price}</p>
-                               <a href="/pages/show_details.html" class="btn btn-primary">Buy Now</a>
+                                <h5 class="card-title">${product.title}</h5>
+                                <p class="card-text">${product.price}</p>
+                                <button onclick="redirectToProductDetails(${product.id})" class="btn btn-primary">View Details</button>
                             </div>
-                        </div> 
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 align-items-stretch">
-                        <div class="card h-100">
-                            <img src="${products[2].image}" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">${products[2].title}</h5>
-                                <p class="card-text">${products[2].price}</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 align-items-stretch">
-                        <div class="card h-100">
-                            <img src="${products[3].image}" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">${products[3].title}</h5>
-                                <p class="card-text">${products[3].price}</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 align-items-stretch">
-                        <div class="card h-100">
-                            <img src="${products[4].image}" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">${products[4].title}</h5>
-                                <p class="card-text">${products[4].price}</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
-                            </div>
-                        </div> 
-                    </div>                    
-                </div>`
-            ;
-            productsSections.appendChild(section);
-        console.log(category, products);
+                        </div>
+                    </div> 
+                `).join('')}
+            </div>  
+        `;  
+
+        productsSections.appendChild(section); 
     }
 }
 
+let details = document.getElementById("details"); 
 function groupProducts(products){
     let map = new Map();
     products.forEach(product => {
@@ -83,5 +54,8 @@ async function getProducts(){
     let response = await fetch('https://fakestoreapi.in/api/products')
     let data = await response.json();
     return data.products;
-}
-  
+} 
+function redirectToProductDetails(productId){
+    window.location.href = `./show_details.html?id=${productId}`;
+
+}   
