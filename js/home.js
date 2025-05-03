@@ -26,7 +26,7 @@ async function viewProducts(){
                             <div class="card-body">
                                 <h5 class="card-title">${products[1].title}</h5>
                                 <p class="card-text">${products[1].price}</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
+                               <a href="/pages/show_details.html" class="btn btn-primary">Buy Now</a>
                             </div>
                         </div> 
                     </div>
