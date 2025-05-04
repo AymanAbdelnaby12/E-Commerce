@@ -9,34 +9,30 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <header class="container-fluid bg-primary">
+      
+      <!-- navbar Section -->
+      <nav class="navbar navbar-expand-md bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="index.html">UltraWave</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                  All Products
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="#" onclick='displayCategoryProducts("audio")'>Audio</a></li>
+                  <li><a class="dropdown-item" href="#" onclick='displayCategoryProducts("gaming")'>Gaming</a></li>
+                  <li><a class="dropdown-item" href="#" onclick='displayCategoryProducts("mobile")'>Mobile</a></li>
+                  <li><a class="dropdown-item" href="#" onclick='displayCategoryProducts("tv")'>TV</a></li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
             </ul>
             <form class="d-flex" role="search">
@@ -46,32 +42,12 @@
           </div>
         </div>
       </nav>
-      <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Runtime Shop</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#audio">Audio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#gaming">Gaming</a></li>
-          <li class="nav-item"><a class="nav-link" href="#mobile">Mobile</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tv">TV</a></li>
-        </ul>
+      <!-- Hero Section -->
+      <div class="container bg-primary text-white text-center py-3">
+        <h1>Welcome to Our Store</h1>
+        <p>Shop the latest trends with great deals!</p>
       </div>
-    </div>
-  </nav>
-
-  <!-- we can put background img here -->
-  <!-- Hero Section --> 
-  <header class="bg-primary text-white text-center py-3">
-    <div class="container">
-      <h1>Welcome to Our Store</h1>
-      <p>Shop the latest trends with great deals!</p>
-    </div>
-  </header>
+    </header>
 
   <!-- Products Section -->
   <section class="container-fluid p-5" id="products">
