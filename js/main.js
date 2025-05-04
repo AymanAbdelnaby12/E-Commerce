@@ -3,7 +3,6 @@ var products;
 var currentDisplayed;
 var groupedProducts;
 var productsSections = document.querySelector("#products");
-// displayProductsOfCategory("audio");
 
 async function viewProducts(){
     products = await getProducts();
@@ -15,12 +14,10 @@ async function viewProducts(){
         section.id = category;
         console.log(category);
         section.innerHTML = `   
-            <div style="display-flex">
-                <h2 class = "h2">${category}</h2>
-                <a class = "align-baseline mx-4" href = "#"><strong class = "align-baseline">see more</strong></a>
-            </div>
+            <h2 class = "h2">${category}</h2>
+            <a class = "mx-4"><strong >see more</strong></a>           
             <div class="row p-4">
-                ${products.slice(0,4).map(product => `
+                ${products.slice(1,5).map(product => `
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 align-items-stretch">
                         <div class="card h-100">
                             <img src="${product.image}" class="card-img-top" alt="Product">
@@ -67,14 +64,17 @@ function redirectToProductDetails(productId){
 }   
 
 function displayCategoryProducts(category){
-    console.log(category);
-    
+    console.log(category);    
     currentDisplayed = groupedProducts.get(category);
+    displayCurrentProducts(category);
+}
+
+function displayCurrentProducts(category){
     productsSections.innerHTML = "";
-    var section = document.createElement("section");
+    let section = document.createElement("section");
     section.classList.add("container-fluid", "p-3"); 
     section.innerHTML = `
-        <a href = "#"> ${category}</a>
+        <a class = "h2" href = "#"> ${category}</a>
         <div class="row p-4">
             ${currentDisplayed.map(product => `
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 align-items-stretch">
@@ -93,20 +93,20 @@ function displayCategoryProducts(category){
     productsSections.appendChild(section);
 }
 
+// Search Feature //
 function search(query) {
     if (query !== "") {
       const categoryResult = searchByCategoryName(query);
       const titleResult = searchByTitle(query);
       const descriptionResult = searchByDescription(query);
-      const merged = cityResult.concat(categoryResult, titleResult, descriptionResult);
+      const merged = categoryResult.concat(categoryResult, titleResult, descriptionResult);
       const map = new Map();
       merged.forEach(function (product) {
         map.set(product.id, product);
       });
-      return Array.from(map.values());
-    } else {
-      return currentDisplayed; 
-    }
+      currentDisplayed =  Array.from(map.values());
+      displayCurrentProducts("Result")
+    } 
   }
 
   function searchByCategoryName(query) {
@@ -125,3 +125,12 @@ function search(query) {
         return product.description.toLowerCase().includes(query.toLowerCase());
       });
   }
+
+  document.querySelector("#searchButton").addEventListener("click", ()=>{
+    var query = document.querySelector("#searchInput").value;
+    search(query);
+  })
+  document.querySelector("#searchInput").addEventListener("blur", ()=>{
+    var query = document.querySelector("#searchInput").value;
+    search(query);
+  })
